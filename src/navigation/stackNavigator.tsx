@@ -7,6 +7,7 @@ import {Feed} from "../screens/feed";
 import {Details} from "../screens/details";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { getHeaderTitle } from '@react-navigation/elements';
+import {BottomTabs} from "./bottomTabNavigator";
 
 
 
@@ -72,7 +73,7 @@ export const StackNavigator = () => {
         >
             <Stack.Screen
                 name="FeedList"
-                component={Feed}
+                component={BottomTabs}
                 options={({ route }) => {
                     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
                     return { headerTitle: routeName };
