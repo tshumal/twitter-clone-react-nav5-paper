@@ -1,14 +1,16 @@
 import {DrawerContentComponentProps, DrawerContentScrollView, DrawerItem} from "@react-navigation/drawer";
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import {Text, Avatar, Caption, Drawer, Paragraph, Switch, Title, TouchableRipple} from "react-native-paper";
+import {Text, Avatar, Caption, Drawer, Paragraph, Switch, Title, TouchableRipple, useTheme} from "react-native-paper";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Animated from 'react-native-reanimated';
+import {PreferencesContext} from "../context/preferencesContext";
 
 type Props = DrawerContentComponentProps;
 
-
 export function DrawerContent(props: Props) {
+    const paperTheme = useTheme();
+    const { toggleTheme, isDarkTheme } = React.useContext(PreferencesContext)
     // @ts-ignore
     return(
         <DrawerContentScrollView {...props}>
@@ -86,11 +88,11 @@ export function DrawerContent(props: Props) {
                     />
                 </Drawer.Section>
                 <Drawer.Section title="Preferences">
-                    <TouchableRipple onPress={() => {}}>
+                    <TouchableRipple onPress={() => toggleTheme()}>
                         <View style={styles.preference}>
                             <Text>Dark Theme</Text>
                             <View pointerEvents="none">
-                                <Switch value={false} />
+                                <Switch value={isDarkTheme} />
                             </View>
                         </View>
                     </TouchableRipple>
